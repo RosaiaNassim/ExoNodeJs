@@ -1,5 +1,198 @@
 [
-    { "id": 1, "name": "Goku", "power": "Ultra Instinct" },
-    { "id": 2, "name": "Vegeta", "power": "Super Saiyan Blue" },
-    { "id": 3, "name": "Gohan", "power": "Beast Mode" }
-]
+    {
+      "episode": 1,
+      "title": "L'Apparitr",
+      "image": "images/episode1/cover.avif",
+      "scenes": [
+        {
+          "image": "images/episode1/scene1.png",
+          "text": "Jinwoo se réveille avec un nouveau pouvoir."
+        }
+      ]
+    },
+    {
+      "episode": 2,
+      "title": "L'Apparitiotttttttttthhdhn du Chasseur",
+      "image": "images/episode1/cover.avif",
+      "scenes": [
+        {
+          "image": "images/episode1/scene1.png",
+          "text": "Jinwoo se réveille avec un nouveau pouvoir."
+        }
+      ]
+    },
+    {
+      "episode": 3,
+      "title": "ghdehdehdeh",
+      "image": "images/episode1/cover.avif",
+      "scenes": [
+        {
+          "image": "images/episode1/scene1.png",
+          "text": "Jinwoo se réveille avec un nouveau pouvoir."
+        }
+      ]
+    },
+    {
+      "episode": 4,
+      "title": "L'Apparition du Chasseur",
+      "image": "images/episode1/cover.avif",
+      "scenes": [
+        {
+          "image": "images/episode1/scene1.png",
+          "text": "Jinwoo se réveille avec un nouveau pouvoir."
+        }
+      ]
+    },
+    {
+      "episode": 5,
+      "title": "L'Apparition du Chasseur",
+      "image": "images/episode1/cover.avif",
+      "scenes": [
+        {
+          "image": "images/episode1/scene1.png",
+          "text": "Jinwoo se réveille avec un nouveau pouvoir."
+        }
+      ]
+    },
+    {
+      "episode": 6,
+      "title": "L'Apparition du Chasseur",
+      "image": "images/episode1/cover.avif",
+      "scenes": [
+        {
+          "image": "images/episode1/scene1.png",
+          "text": "Jinwoo se réveille avec un nouveau pouvoir."
+        }
+      ]
+    },
+    {
+      "episode": 7,
+      "title": "L'Apparition du Chasseur",
+      "image": "images/episode1/cover.avif",
+      "scenes": [
+        {
+          "image": "images/episode1/scene1.png",
+          "text": "Jinwoo se réveille avec un nouveau pouvoir."
+        }
+      ]
+    },
+    {
+      "episode": 8,
+      "title": "eh bah",
+      "image": "images/episode1/cover.avif",
+      "scenes": [
+        {
+          "image": "images/episode1/scene1.png",
+          "text": "Jinwoo se réveille avec un nouveau pouvoir."
+        },
+        {
+          "image": "images/episode1/scene2.png",
+          "text": "Il commence son entraînement pour devenir plus fort."
+        }
+      ]
+    },
+    {
+      "episode": 9,
+      "title": "efjkshgfjk",
+      "image": "images/episode1/cover.avif",
+      "scenes": [
+        {
+          "image": "images/episode1/scene1.png",
+          "text": "Jinwoo se réveille avec un nouveau pouvoir."
+        },
+        {
+          "image": "images/episode1/scene2.png",
+          "text": "Il commence son entraînement pour devenir plus fort."
+        }
+      ]
+    },
+    {
+      "episode": 454,
+      "title": "efjkshgggggg",
+      "image": "images/episode1/cover.avif",
+      "scenes": [
+        {
+          "image": "images/episode1/scene1.png",
+          "text": "Jinwoo se réveille avec un nouveau pouvoir."
+        },
+        {
+          "image": "images/episode1/scene2.png",
+          "text": "Il commence son entraînement pour devenir plus fort."
+        }
+      ]
+    },
+    {
+      "episode": "4888",
+      "title": "QFQFQF"
+    },
+    {
+      "episode": "4889",
+      "title": "gsgsg",
+      "image": "oooo.png",
+      "scenes": [
+        {
+          "image": "fjhqfjkq.png",
+          "text": "fazffzefzf"
+        },
+        {
+          "image": "fjklqflqf.png",
+          "text": "efqsfqsf"
+        }
+      ]
+    },
+    {
+      "episode": "4",
+      "title": "qfqsgfs",
+      "image": "oooo.png",
+      "scenes": [
+        {
+          "image": "fjhqfjkq.png",
+          "text": "fazffzefzf"
+        }
+      ]
+    },
+    {
+      "episode": "15",
+      "title": "l arrive de nass ",
+      "image": "oooo.png",
+      "scenes": [
+        {
+          "image": "fjhqfjkq.png",
+          "text": "fazffzefzf"
+        }
+      ]
+    },
+    {
+      "episode": "8",
+      "title": "gg",
+      "image": "gsdg",
+      "scenes": [
+        {
+          "image": "gdg",
+          "text": "fgfg"
+        }
+      ]
+    },
+    {
+      "episode": "1",
+      "title": "gg",
+      "image": "gsdg",
+      "scenes": [
+        {
+          "image": "gdg",
+          "text": "fgfg"
+        }
+      ]
+    },
+    {
+      "episode": "17",
+      "title": "le retour",
+      "image": "lelectricien.png",
+      "scenes": [
+        {
+          "image": "larry.png",
+          "text": "je vais te toucher la nuit"
+        }
+      ]
+    }
+  ]
