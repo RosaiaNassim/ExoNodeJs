@@ -41,94 +41,17 @@ const server = http.createServer((req, res) => {
                 res.end(data || "[]");
             }
         });
-    } else if (req.method === "POST" && req.url === "/submit") {
-        let body = "";
-
-        req.on("data", (chunk) => {
-            body += chunk.toString();
-        });
-
-        req.on("end", () => {
-            try {
-                const newEpisode = JSON.parse(body);
-
-                // Vérifier si les champs sont valides
-                if (
-                    !newEpisode.episode ||
-                    !newEpisode.title ||
-                    !newEpisode.image ||
-                    !Array.isArray(newEpisode.scenes)
-                ) {
-                    res.writeHead(400, { "Content-Type": "application/json" });
-                    return res.end(
-                        JSON.stringify({
-                            error: "Format invalide. Un épisode doit contenir 'episode', 'title', 'image' et 'scenes'.",
-                        }),
-                    );
-                }
-
-                fs.readFile(filePath, "utf8", (err, data) => {
-                    let episodes = [];
-
-                    if (!err && data) {
-                        episodes = JSON.parse(data);
-                    }
-
-                    // Vérifier si l'épisode existe déjà
-                    if (
-                        episodes.some((ep) => ep.episode === newEpisode.episode)
-                    ) {
-                        res.writeHead(400, {
-                            "Content-Type": "application/json",
-                        });
-                        return res.end(
-                            JSON.stringify({
-                                error: "L'épisode avec ce numéro existe déjà.",
-                            }),
-                        );
-                    }
-
-                    // Ajouter le nouvel épisode
-                    episodes.push(newEpisode);
-
-                    fs.writeFile(
-                        filePath,
-                        JSON.stringify(episodes, null, 2),
-                        (err) => {
-                            if (err) {
-                                res.writeHead(500, {
-                                    "Content-Type": "application/json",
-                                });
-                                return res.end(
-                                    JSON.stringify({
-                                        error: "Erreur lors de l'écriture du fichier JSON",
-                                    }),
-                                );
-                            }
-
-                            res.writeHead(201, {
-                                "Content-Type": "application/json",
-                            });
-                            res.end(
-                                JSON.stringify({
-                                    message: "Épisode ajouté avec succès",
-                                    newEpisode,
-                                }),
-                            );
-                        },
-                    );
-                });
-            } catch (error) {
+    } else if 
+         (error) {
                 res.writeHead(400, { "Content-Type": "application/json" });
                 res.end(JSON.stringify({ error: "Invalid JSON format" }));
             }
         });
-    } else {
+        else {
         res.writeHead(404, { "Content-Type": "text/plain" });
         res.end("Not Found");
     }
-});
+
 server.listen(port, hostname, () => {
     console.log(`Serveur en fonctionnement à http://${hostname}:${port}/`);
 });
-
