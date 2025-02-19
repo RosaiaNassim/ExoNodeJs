@@ -1,17 +1,23 @@
 const http = require("http");
 const fs = require("fs").promises;
+const path = require("path");
 
-const port = process.argv[2] || 3000;
+const LOG_FILE = "server.log";
+
+async function logRequest(message) {
+    const logMessage = `${new Date().toISOString()} - ${message}\n`;
+    await fs.appendFile(LOG_FILE, logMessage);
+}
 
 // Lecture du fichier JSON
 async function readArticles() {
     const data = await fs.readFile("articles.json", "utf8");
-    return JSON.parse(data);
+    return JSON.parse(data).articles;
 }
 
 // Écriture dans le fichier JSON
 async function writeArticles(articles) {
-    await fs.writeFile("articles.json", JSON.stringify(articles, null, 2));
+    await fs.writeFile("articles.json", JSON.stringify({ articles }, null, 2));
 }
 
 const server = http.createServer(async (req, res) => {
@@ -28,34 +34,77 @@ const server = http.createServer(async (req, res) => {
     }
 
     // Logging des requêtes
-    console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+    const logMessage = `${req.method} ${req.url}`;
+    console.log(logMessage);
+    await logRequest(logMessage);
 
     // Routes API
     if (req.url === "/articles" && req.method === "GET") {
         const articles = await readArticles();
         res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(articles));
+        res.end(JSON.stringify({ articles }));
     } else if (req.url === "/articles" && req.method === "POST") {
         let body = "";
         req.on("data", (chunk) => (body += chunk));
         req.on("end", async () => {
             try {
                 const article = JSON.parse(body);
+                if (!article.title || !article.content) {
+                    throw new Error("Missing title or content");
+                }
                 const articles = await readArticles();
-                article.id = Date.now(); // Simple ID unique
+                article.id = Date.now();
                 articles.push(article);
                 await writeArticles(articles);
                 res.writeHead(201, { "Content-Type": "application/json" });
                 res.end(JSON.stringify(article));
             } catch (error) {
                 res.writeHead(400);
-                res.end(JSON.stringify({ error: "Invalid data" }));
+                res.end(JSON.stringify({ error: error.message }));
             }
         });
     } else if (req.url.match(/\/articles\/\d+$/) && req.method === "DELETE") {
-      //Code
+        const id = parseInt(req.url.split("/").pop(), 10);
+        const articles = await readArticles();
+        const updatedArticles = articles.filter(article => article.id !== id);
+
+        if (articles.length === updatedArticles.length) {
+            res.writeHead(404, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ error: "Article not found" }));
+            return;
+        }
+
+        await writeArticles(updatedArticles);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ message: "Article deleted" }));
     } else if (req.url.match(/\/articles\/\d+$/) && req.method === "PUT") {
-      //Code
+        const id = parseInt(req.url.split("/").pop(), 10);
+        let body = "";
+        req.on("data", (chunk) => (body += chunk));
+        req.on("end", async () => {
+            try {
+                const updatedArticle = JSON.parse(body);
+                if (!updatedArticle.title || !updatedArticle.content) {
+                    throw new Error("Missing title or content");
+                }
+                let articles = await readArticles();
+                let articleIndex = articles.findIndex(article => article.id === id);
+
+                if (articleIndex === -1) {
+                    res.writeHead(404, { "Content-Type": "application/json" });
+                    res.end(JSON.stringify({ error: "Article not found" }));
+                    return;
+                }
+
+                articles[articleIndex] = { id, ...updatedArticle };
+                await writeArticles(articles);
+                res.writeHead(200, { "Content-Type": "application/json" });
+                res.end(JSON.stringify(articles[articleIndex]));
+            } catch (error) {
+                res.writeHead(400);
+                res.end(JSON.stringify({ error: error.message }));
+            }
+        });
     } else {
         res.writeHead(404);
         res.end(JSON.stringify({ error: "Not found" }));
