@@ -1,6 +1,7 @@
 import http from 'http';
 import { handleRequest as handleArticleRequest } from './routes/articles.js';
 import { logRequest, logError } from './utils/logger.js';
+import { hostname } from 'os';
 
 const server = http.createServer(async (req, res) => {
 // CORS headers
