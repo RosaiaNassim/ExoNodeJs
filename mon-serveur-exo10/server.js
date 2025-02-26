@@ -16,7 +16,7 @@ const server = http.createServer(async (req, res) => {
     }
 
 // Log la requête
-    await logRequest(req.method, req.url);
+  //  await logRequest(req.method, req.url);
 
     try {
         if (req.url.startsWith('/articles')) {
